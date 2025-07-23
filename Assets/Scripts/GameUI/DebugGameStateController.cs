@@ -32,7 +32,7 @@ public class DebugGameStateController : MonoBehaviour
         {
             if (DebugText != null)
             {
-                DebugText.text = "Debug Mode";//フォントの関係でいったん英語。後で日本語化
+                DebugText.text = "Debug Mode";
                 DebugText.gameObject.SetActive(true);
             }
             if (StateText != null)

@@ -419,9 +419,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Back to Stage Select
-
-'
+  m_Text: "\u30B9\u30C6\u30FC\u30B8\u30BB\u30EC\u30AF\u30C8\u306B\u623B\u308B\n"
 --- !u!222 &372663995
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1350,7 +1348,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Return to Title
+  m_Text: "\u30BF\u30A4\u30C8\u30EB\u3078\u623B\u308B"
 --- !u!222 &1506566235
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1584,7 +1582,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Resume to Game
+  m_Text: "\u30B2\u30FC\u30E0\u753B\u9762\u306B\u623B\u308B"
 --- !u!222 &2009617809
 CanvasRenderer:
   m_ObjectHideFlags: 0
