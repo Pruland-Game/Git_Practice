@@ -56,7 +56,7 @@ public class DebugGameStateController : MonoBehaviour
 
     }
 
-    private void SetState(GameState newState)//状態管理用関数
+    public void SetState(GameState newState)//状態管理用の共有メソッド
     {
         currentState = newState;
         Debug.Log("現在ステータス: " + CurrentState);
