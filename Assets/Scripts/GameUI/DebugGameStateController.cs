@@ -45,13 +45,6 @@ public class DebugGameStateController : MonoBehaviour
 
     private void Update()
     {
-
-        // 常時：Escでポーズ機能
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SetState(GameState.Pause);
-        }
-
         if (isDebugMode)
         {
             if (Input.GetKeyDown(KeyCode.O))

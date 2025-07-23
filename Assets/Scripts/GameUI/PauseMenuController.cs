@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 public class PauseMenuController : MonoBehaviour
@@ -34,6 +35,20 @@ public class PauseMenuController : MonoBehaviour
 
     private void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (DebugGameStateController.Instance.CurrentState == GameState.Pause)
+            {
+                DebugGameStateController.Instance.SetState(GameState.None);
+            }
+            else
+            {
+                DebugGameStateController.Instance.SetState(GameState.Pause);
+            }
+
+            return; // 状態が切り替わったら入力処理しない
+        }
         if (DebugGameStateController.Instance.CurrentState == GameState.Pause)
         {
             if (pausePanel != null && !pausePanel.activeSelf)
@@ -41,7 +56,6 @@ public class PauseMenuController : MonoBehaviour
                 pausePanel.SetActive(true);
                 UpdateSelectionVisual(); // 表示直後に選択状態を更新
             }
-
             HandleMenuInput();
         }
         else
@@ -59,14 +73,14 @@ public class PauseMenuController : MonoBehaviour
 
         bool updated = false;
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow)|| Input.GetKeyDown(KeyCode.S))
         {
             currentSelection++;
             if (currentSelection >= menuButtons.Count)
                 currentSelection = 0;
             updated = true;
         }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        else if (Input.GetKeyDown(KeyCode.UpArrow)||Input.GetKeyDown(KeyCode.W))
         {
             currentSelection--;
             if (currentSelection < 0)
@@ -79,11 +93,23 @@ public class PauseMenuController : MonoBehaviour
             UpdateSelectionVisual();
         }
 
-        // 決定処理（Enterキーでクリックなど）を追加するならここに
+        // Enterキーで決定
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
-        {
-            menuButtons[currentSelection].onClick.Invoke();
-        }
+            switch (currentSelection)
+            {
+                case 0:
+                    //ゲーム画面に戻る
+                    DebugGameStateController.Instance.SetState(GameState.None); //ポーズ解除
+                    break;
+                case 1:
+                    // ステージセレクトに戻る
+                    Debug.Log("未実装です");
+                    break;
+                case 2:
+                    // タイトル(startScene)に戻る
+                    SceneManager.LoadScene("startScene");
+                    break;
+            }
     }
 
     private void UpdateSelectionVisual()
