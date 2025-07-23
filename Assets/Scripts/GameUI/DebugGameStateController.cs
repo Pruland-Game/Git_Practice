@@ -5,7 +5,7 @@ public enum GameState
     None,
     Pause,
     GameOver,
-    GameClear
+    StageClear
 }
 public class DebugGameStateController : MonoBehaviour
 {
@@ -54,7 +54,7 @@ public class DebugGameStateController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.P))
             {
-                SetState(GameState.GameClear);
+                SetState(GameState.StageClear);
             }
         }
 
