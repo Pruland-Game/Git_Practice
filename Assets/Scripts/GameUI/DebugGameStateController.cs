@@ -15,6 +15,17 @@ public class DebugGameStateController : MonoBehaviour
 
     private GameState currentState = GameState.None;//現在のゲーム状態
     public GameState CurrentState => currentState;//他スクリプトからの状態参照プロパティ
+    public static DebugGameStateController Instance { get; private set; }//シングルトン用
+    private void Awake()//シングルトン
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject); // 複製防止
+            return;
+        }
+        Instance = this;
+    }
+
     private void Start()
     {
         if (isDebugMode == true)//デバッグモードが有効な場合の表示類
