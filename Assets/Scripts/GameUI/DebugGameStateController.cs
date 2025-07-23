@@ -1,5 +1,5 @@
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 public enum GameState
 {
     None,
@@ -9,8 +9,8 @@ public enum GameState
 }
 public class DebugGameStateController : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI debugText;　　　 // デバッグモード中表示
-    [SerializeField] private TextMeshProUGUI stateText;       // デバッグモード中状態表示
+    [SerializeField] private Text DebugText;　　　 // デバッグモード中表示
+    [SerializeField] private Text StateText;       // デバッグモード中状態表示
     private bool isDebugMode = true;
 
     private GameState currentState = GameState.None;//現在のゲーム状態
@@ -30,15 +30,15 @@ public class DebugGameStateController : MonoBehaviour
     {
         if (isDebugMode == true)//デバッグモードが有効な場合の表示類
         {
-            if (debugText != null)
+            if (DebugText != null)
             {
-                debugText.text = "Debug Mode";//フォントの関係でいったん英語。後で日本語化
-                debugText.gameObject.SetActive(true);
+                DebugText.text = "Debug Mode";//フォントの関係でいったん英語。後で日本語化
+                DebugText.gameObject.SetActive(true);
             }
-            if (stateText != null)
+            if (StateText != null)
             {
-                stateText.text = "State: " + currentState;
-                stateText.gameObject.SetActive(true);
+                StateText.text = "State: " + currentState;
+                StateText.gameObject.SetActive(true);
             }
         }
     }
@@ -67,24 +67,24 @@ public class DebugGameStateController : MonoBehaviour
 
         if (CurrentState == GameState.Pause)
         {
-            if (debugText != null && debugText.gameObject.activeSelf)
+            if (DebugText != null && DebugText.gameObject.activeSelf)
             {
-                debugText.gameObject.SetActive(false);
+                DebugText.gameObject.SetActive(false);
             }
-            if (stateText != null && stateText.gameObject.activeSelf)
+            if (StateText != null && StateText.gameObject.activeSelf)
             {
-                stateText.gameObject.SetActive(false);
+                StateText.gameObject.SetActive(false);
             }
         }
         else
         {
-            if (debugText != null && !debugText.gameObject.activeSelf)
+            if (DebugText != null && !DebugText.gameObject.activeSelf)
             {
-                debugText.gameObject.SetActive(true);
+                DebugText.gameObject.SetActive(true);
             }
-            if (stateText != null && !stateText.gameObject.activeSelf)
+            if (StateText != null && !StateText.gameObject.activeSelf)
             {
-                stateText.gameObject.SetActive(true);
+                StateText.gameObject.SetActive(true);
             }
         }
 
@@ -96,9 +96,9 @@ public class DebugGameStateController : MonoBehaviour
         currentState = newState;
         Debug.Log("現在ステータス: " + CurrentState);
 
-        if (isDebugMode && stateText != null)
+        if (isDebugMode && StateText != null)
         {
-            stateText.text = "State: " + CurrentState;
+            StateText.text = "State: " + CurrentState;
         }
     }
 }
