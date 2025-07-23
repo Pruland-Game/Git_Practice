@@ -54,6 +54,30 @@ public class DebugGameStateController : MonoBehaviour
             }
         }
 
+        if (CurrentState == GameState.Pause)
+        {
+            if (debugText != null && debugText.gameObject.activeSelf)
+            {
+                debugText.gameObject.SetActive(false);
+            }
+            if (stateText != null && stateText.gameObject.activeSelf)
+            {
+                stateText.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            if (debugText != null && !debugText.gameObject.activeSelf)
+            {
+                debugText.gameObject.SetActive(true);
+            }
+            if (stateText != null && !stateText.gameObject.activeSelf)
+            {
+                stateText.gameObject.SetActive(true);
+            }
+        }
+
+
     }
 
     public void SetState(GameState newState)//状態管理用の共有メソッド
