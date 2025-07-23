@@ -1,29 +1,27 @@
 using UnityEngine;
 using TMPro;
-
+public enum GameState
+{
+    None,
+    Pause,
+    GameOver,
+    GameClear
+}
 public class DebugGameStateController : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI debugText;
-    [SerializeField] private TextMeshProUGUI stateText;       // 状態表示用（新規）
+    [SerializeField] private TextMeshProUGUI debugText;　　　 // デバッグモード中表示
+    [SerializeField] private TextMeshProUGUI stateText;       // デバッグモード中状態表示
     private bool isDebugMode = true;
 
-    private enum GameState
-    {
-        None,
-        Pause,
-        GameOver,
-        GameClear
-    }
-
-    private GameState currentState = GameState.None;
-
+    private GameState currentState = GameState.None;//現在のゲーム状態
+    public GameState CurrentState => currentState;//他スクリプトからの状態参照プロパティ
     private void Start()
     {
-        if (isDebugMode == true)
+        if (isDebugMode == true)//デバッグモードが有効な場合の表示類
         {
             if (debugText != null)
             {
-                debugText.text = "Debug Mode";
+                debugText.text = "Debug Mode";//フォントの関係でいったん英語。後で日本語化
                 debugText.gameObject.SetActive(true);
             }
             if (stateText != null)
@@ -36,7 +34,8 @@ public class DebugGameStateController : MonoBehaviour
 
     private void Update()
     {
-        // 常時：EscでPause
+
+        // 常時：Escでポーズ機能
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SetState(GameState.Pause);
@@ -54,16 +53,17 @@ public class DebugGameStateController : MonoBehaviour
                 SetState(GameState.GameClear);
             }
         }
+
     }
 
-    private void SetState(GameState newState)
+    private void SetState(GameState newState)//状態管理用関数
     {
         currentState = newState;
-        Debug.Log("現在ステータス: " + currentState);
+        Debug.Log("現在ステータス: " + CurrentState);
 
         if (isDebugMode && stateText != null)
         {
-            stateText.text = "State: " + currentState;
+            stateText.text = "State: " + CurrentState;
         }
     }
 }
