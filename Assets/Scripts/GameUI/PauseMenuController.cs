@@ -103,11 +103,13 @@ public class PauseMenuController : MonoBehaviour
                     break;
                 case 1:
                     // ステージセレクトに戻る
-                    Debug.Log("未実装です");
+                    Debug.Log("ステージセレクトは現状未実装です");
                     break;
                 case 2:
                     // タイトル(startScene)に戻る
                     SceneManager.LoadScene("startScene");
+                    //推移できなかった場合の処理
+                    Debug.Log("Build ProfilesからシーンリストにstartSceneを登録しないと推移できません");
                     break;
             }
     }
